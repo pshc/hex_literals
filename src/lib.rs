@@ -5,7 +5,7 @@ extern crate rustc;
 
 use std::rc::Rc;
 use rustc::plugin::Registry;
-use syntax::ast::{LitByteStr, TokenTree, TtToken};
+use syntax::ast::{LitByteStr, TokenTree};
 use syntax::codemap::Span;
 use syntax::ext::base::{ExtCtxt, MacResult, DummyResult, MacEager};
 use syntax::ext::build::AstBuilder;
@@ -38,7 +38,7 @@ fn decode_hex_char(c: char) -> Result<u8, String> {
 
 fn expand_hex(cx: &mut ExtCtxt, sp: Span, args: &[TokenTree]) -> Box<MacResult + 'static> {
     match args {
-        [TtToken(tok_span, token::Literal(token::Str_(name), _))] => {
+        [TokenTree::Token(tok_span, token::Literal(token::Str_(name), _))] => {
             match decode_hex_str(&*name.as_str()) {
                 Ok(bytes) => {
                     // success!
