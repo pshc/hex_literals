@@ -1,0 +1,11 @@
+[package]
+name = "hex_literals"
+description = "Macro that converts hex strings to byte strings"
+homepage = "https://github.com/pshc/hex_literals"
+repository = "https://github.com/pshc/hex_literals.git"
+version = "0.1.0"
+license = "MIT"
+authors = ["Paul Collier <paul@paulcollier.ca>"]
+
+[lib]
+crate-type = ["dylib"]
