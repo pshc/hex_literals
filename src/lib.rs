@@ -2,9 +2,10 @@
 
 extern crate syntax;
 extern crate rustc;
+extern crate rustc_plugin;
 
 use std::rc::Rc;
-use rustc::plugin::Registry;
+use rustc_plugin::Registry;
 use syntax::ast::{LitByteStr, TokenTree};
 use syntax::codemap::Span;
 use syntax::ext::base::{ExtCtxt, MacResult, DummyResult, MacEager};
