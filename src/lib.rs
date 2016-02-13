@@ -30,8 +30,8 @@ fn decode_hex_str(hex: &str) -> Result<Vec<u8>, String> {
 }
 
 fn decode_hex_char(c: char) -> Result<u8, String> {
-    if c.is_digit(16) {
-        Ok(c.to_digit(16).unwrap() as u8)
+    if let Some(digit) = c.to_digit(16) {
+        Ok(digit as u8)
     } else {
         Err(format!("non-hexadecimal non-whitespace character {:?}", c))
     }
@@ -40,7 +40,7 @@ fn decode_hex_char(c: char) -> Result<u8, String> {
 fn expand_hex(cx: &mut ExtCtxt, sp: Span, args: &[TokenTree]) -> Box<MacResult + 'static> {
     match args {
         [TokenTree::Token(tok_span, token::Literal(token::Str_(name), _))] => {
-            match decode_hex_str(&*name.as_str()) {
+            match decode_hex_str(&name.as_str()) {
                 Ok(bytes) => {
                     // success!
                     let byte_str = LitByteStr(Rc::new(bytes));
