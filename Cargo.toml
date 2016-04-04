@@ -3,7 +3,7 @@ name = "hex_literals"
 description = "Macro that converts hex strings to byte strings"
 homepage = "https://github.com/pshc/hex_literals"
 repository = "https://github.com/pshc/hex_literals.git"
-version = "0.1.3"
+version = "0.1.4"
 license = "MIT OR Apache-2.0"
 authors = ["Paul Collier <paul@paulcollier.ca>"]
 

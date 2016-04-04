@@ -6,7 +6,8 @@ extern crate rustc_plugin;
 
 use std::rc::Rc;
 use rustc_plugin::Registry;
-use syntax::ast::{LitByteStr, TokenTree};
+use syntax::ast::TokenTree;
+use syntax::ast::LitKind::ByteStr;
 use syntax::codemap::Span;
 use syntax::ext::base::{ExtCtxt, MacResult, DummyResult, MacEager};
 use syntax::ext::build::AstBuilder;
@@ -43,7 +44,7 @@ fn expand_hex(cx: &mut ExtCtxt, sp: Span, args: &[TokenTree]) -> Box<MacResult +
             match decode_hex_str(&name.as_str()) {
                 Ok(bytes) => {
                     // success!
-                    let byte_str = LitByteStr(Rc::new(bytes));
+                    let byte_str = ByteStr(Rc::new(bytes));
                     return MacEager::expr(cx.expr_lit(sp, byte_str));
                 }
                 Err(reason) => cx.span_err(tok_span, &reason),
