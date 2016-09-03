@@ -6,12 +6,12 @@ extern crate rustc_plugin;
 
 use std::rc::Rc;
 use rustc_plugin::Registry;
-use syntax::ast::TokenTree;
 use syntax::ast::LitKind::ByteStr;
 use syntax::codemap::Span;
 use syntax::ext::base::{ExtCtxt, MacResult, DummyResult, MacEager};
 use syntax::ext::build::AstBuilder;
 use syntax::parse::token;
+use syntax::tokenstream::TokenTree;
 
 fn decode_hex_str(hex: &str) -> Result<Vec<u8>, String> {
     let mut vec = Vec::with_capacity(hex.len() / 2);
@@ -39,7 +39,7 @@ fn decode_hex_char(c: char) -> Result<u8, String> {
 }
 
 fn expand_hex(cx: &mut ExtCtxt, sp: Span, args: &[TokenTree]) -> Box<MacResult + 'static> {
-    match args {
+    match *args {
         [TokenTree::Token(tok_span, token::Literal(token::Str_(name), _))] => {
             match decode_hex_str(&name.as_str()) {
                 Ok(bytes) => {
