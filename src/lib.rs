@@ -50,8 +50,8 @@ fn expand_hex(cx: &mut ExtCtxt, sp: Span, args: &[TokenTree]) -> Box<MacResult +
                 Err(reason) => cx.span_err(tok_span, &reason),
             }
         }
-        [ref tt] => cx.span_err(tt.get_span(), "expected string literal"),
-        [_, ref tt, ..] => cx.span_err(tt.get_span(), "too many arguments"),
+        [ref tt] => cx.span_err(tt.span(), "expected string literal"),
+        [_, ref tt, ..] => cx.span_err(tt.span(), "too many arguments"),
         _ => cx.span_err(sp, "expected string literal"),
     }
     // error path
