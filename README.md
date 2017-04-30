@@ -1,3 +1,5 @@
+# hex\_literals [![Build Status](https://img.shields.io/travis/pshc/hex_literals.svg)](http://travis-ci.org/pshc/hex_literals) [![Cargo](https://img.shields.io/crates/v/hex_literals.svg)](https://crates.io/crates/hex_literals)
+
 Simple syntax extension that converts hex strings into byte strings.
 
 ```rust
